@@ -7,8 +7,8 @@ describe("loginUser", () =>{
 
     const faker = require("faker");
 
-    let name = faker.name.firstName();
-    let lastName =faker.name.lastName();
+    const name = faker.name.firstName();
+    const lastName =faker.name.lastName();
 
     beforeEach("visitUrl", () => {
         cy.visit("");
@@ -18,7 +18,7 @@ describe("loginUser", () =>{
         cy.wait(3000); 
     })
 
-    it("cancelCreatingBoard", ()=>{
+    it("cancelCreatingBoard", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardField).click();
@@ -30,7 +30,7 @@ describe("loginUser", () =>{
         cy.get(board.cancelXButton).click();
     })
 
-    it("createScrumBoardValid", ()=>{
+    it("createScrumBoardValid", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardField).click();
@@ -41,12 +41,12 @@ describe("loginUser", () =>{
         cy.get(board.nextButton).click();
         cy.get(board.nextButton).click();
         cy.get(board.boardList).click();
-        cy.get(board.boardSettingsButton, {timeout : 3000}).eq(8).click();
+        cy.get(board.boardSettingsButton).eq(8).click();
         cy.get(board.deleteBoardButton).scrollIntoView().click();
         cy.get(board.saveButton).click();
     })
 
-    it("createKanbanBoardValid", ()=>{
+    it("createKanbanBoardValid", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardField).click();
@@ -57,12 +57,12 @@ describe("loginUser", () =>{
         cy.get(board.nextButton).click();
         cy.get(board.nextButton).click({force:true});
         cy.get(board.boardList).click();
-        cy.get(board.boardSettingsButton, {timeout : 3000}).eq(8).click();
+        cy.get(board.boardSettingsButton).eq(8).click();
         cy.get(board.deleteBoardButton).scrollIntoView().click();
         cy.get(board.saveButton).click();
     })
 
-    it("changeBoardType", ()=>{
+    it("changeBoardType", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardButton).click();
@@ -73,15 +73,15 @@ describe("loginUser", () =>{
         cy.get(board.nextButton).click();
         cy.get(board.nextButton).click({force:true});
         cy.get(board.boardList).click();
-        cy.get(board.boardSettingsButton, {timeout : 3000}).eq(8).click();
+        cy.get(board.boardSettingsButton).eq(8).click();
         cy.get(board.boardTypeButton).scrollIntoView().click();
         cy.get(board.boardTypeChecbox).eq(1).click();
         cy.get(board.saveButton).click();
-        cy.get(board.deleteBoardButton, {timeout: 3000}).scrollIntoView().click();
+        cy.get(board.deleteBoardButton).scrollIntoView().click();
         cy.get(board.saveButton).click();
     })
 
-    it("updateBoardTitle", ()=>{
+    it.only("updateBoardTitle", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardButton).click();
@@ -92,14 +92,14 @@ describe("loginUser", () =>{
         cy.get(board.nextButton).click();
         cy.get(board.nextButton).click({force:true});
         cy.get(board.boardList).click();
-        cy.get(board.boardSettingsButton, {timeout : 3000}).eq(8).click();
+        cy.get(board.boardSettingsButton).eq(8).click();
         cy.get(board.boardUpdateTitleField).type(lastName);
         cy.get(board.updateBUtton).eq(0).click();
         cy.get(board.deleteBoardButton).scrollIntoView().click();
         cy.get(board.saveButton).click();
     })
 
-    it("createBoardByButton", ()=>{
+    it("createBoardByButton", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardButton).click();
@@ -110,12 +110,12 @@ describe("loginUser", () =>{
         cy.get(board.nextButton).click();
         cy.get(board.nextButton).click({force:true});
         cy.get(board.boardList).click();
-        cy.get(board.boardSettingsButton, {timeout : 3000}).eq(8).click();
+        cy.get(board.boardSettingsButton).eq(8).click();
         cy.get(board.deleteBoardButton).scrollIntoView().click();
         cy.get(board.saveButton).click();
     })
 
-    it("createBoardSidebar", ()=>{
+    it("createBoardSidebar", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addButtonSidebar).click();
@@ -127,7 +127,7 @@ describe("loginUser", () =>{
         cy.get(board.nextButton).click();
         cy.get(board.nextButton).click({force:true});
         cy.get(board.boardList).click();
-        cy.get(board.boardSettingsButton, {timeout : 3000}).eq(8).click();
+        cy.get(board.boardSettingsButton).eq(8).click();
         cy.get(board.deleteBoardButton).scrollIntoView().click();
         cy.get(board.saveButton).click();
     })

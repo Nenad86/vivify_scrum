@@ -6,8 +6,8 @@ describe("createOrganization", () =>{
 
     const faker = require("faker");
 
-    let name = faker.name.firstName();
-    let lastName =faker.name.lastName();
+    const name = faker.name.firstName();
+    const lastName =faker.name.lastName();
 
     beforeEach("visitUrl", () => {
         cy.visit("");
@@ -17,32 +17,32 @@ describe("createOrganization", () =>{
         cy.wait(3000);   
     })
 
-    it("createOrganizationCanceled", ()=>{
+    it("createOrganizationCanceled", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
         cy.get(organization.organizationXButton).eq(1).click();
     })
 
-    it("createOrganizationValid", ()=>{
+    it("createOrganizationValid", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
         cy.get(organization.nextButton).click();
         cy.get(organization.boardsPopUpOkButton).click({force: true});
-        cy.get(organization.organizationSettings, {timeout : 3000}).eq(6).click();
+        cy.get(organization.organizationSettings).eq(6).click();
         cy.get(organization.deleteOrganizationButton).scrollIntoView().click();
         cy.get(organization.passwordField).type(data.user.password);
         cy.get(organization.yesButton).click();
     })
 
-    it("updateOrganizationTitle", ()=>{
+    it("updateOrganizationTitle", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
         cy.get(organization.nextButton).click();
         cy.get(organization.boardsPopUpOkButton).click({force: true});
-        cy.get(organization.organizationSettings, {timeout : 3000}).eq(6).click();
+        cy.get(organization.organizationSettings).eq(6).click();
         cy.get(organization.updateNameField).type(lastName);
         cy.get(organization.updateButton).click();
         cy.get(organization.deleteOrganizationButton).scrollIntoView().click();
@@ -50,13 +50,13 @@ describe("createOrganization", () =>{
         cy.get(organization.yesButton).click();
     })
 
-    it("updateOrganizationTitleAllSpaces", ()=>{
+    it("updateOrganizationTitleAllSpaces", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
         cy.get(organization.nextButton).click();
         cy.get(organization.boardsPopUpOkButton).click({force: true});
-        cy.get(organization.organizationSettings, {timeout : 3000}).eq(6).click();
+        cy.get(organization.organizationSettings).eq(6).click();
         cy.get(organization.updateNameField).clear().type("   ");
         cy.get(organization.updateButton).click({multiple:true});
         cy.get(organization.deleteOrganizationButton).scrollIntoView().click();
@@ -64,26 +64,26 @@ describe("createOrganization", () =>{
         cy.get(organization.yesButton).click();
     })
 
-    it("updateOrganizationWorkDays", ()=>{
+    it("updateOrganizationWorkDays", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
         cy.get(organization.nextButton).click();
         cy.get(organization.boardsPopUpOkButton).click({force: true});
-        cy.get(organization.organizationSettings, {timeout : 3000}).eq(6).click();
+        cy.get(organization.organizationSettings).eq(6).click();
         cy.get(organization.workingDaysCheckbox).eq(6).click();
         cy.get(organization.deleteOrganizationButton).scrollIntoView().click();
         cy.get(organization.passwordField).type(data.user.password);
         cy.get(organization.yesButton).click();
     })
 
-    it("updateOrganizationVacationDaysEmpty", ()=>{
+    it("updateOrganizationVacationDaysEmpty", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
         cy.get(organization.nextButton).click();
         cy.get(organization.boardsPopUpOkButton).click({force: true});
-        cy.get(organization.organizationSettings, {timeout : 3000}).eq(6).click();
+        cy.get(organization.organizationSettings).eq(6).click();
         cy.get(organization.vacationDaysField).clear();
         cy.get(organization.updateButton).eq(1).click();
         cy.get(organization.deleteOrganizationButton).scrollIntoView().click();
@@ -91,13 +91,13 @@ describe("createOrganization", () =>{
         cy.get(organization.yesButton).click();
     })
 
-    it("updateOrganizationVacationDays366", ()=>{
+    it("updateOrganizationVacationDays366", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
         cy.get(organization.nextButton).click();
         cy.get(organization.boardsPopUpOkButton).click({force: true});
-        cy.get(organization.organizationSettings, {timeout : 3000}).eq(6).click();
+        cy.get(organization.organizationSettings).eq(6).click();
         cy.get(organization.vacationDaysField).clear().type("366");
         cy.get(organization.updateButton).eq(1).click();
         cy.get(organization.deleteOrganizationButton).scrollIntoView().click();
@@ -105,13 +105,13 @@ describe("createOrganization", () =>{
         cy.get(organization.yesButton).click();
     })
 
-    it("updateOrganizationVacatioMonthsEmpty", ()=>{
+    it("updateOrganizationVacatioMonthsEmpty", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
         cy.get(organization.nextButton).click();
         cy.get(organization.boardsPopUpOkButton).click({force: true});
-        cy.get(organization.organizationSettings, {timeout : 3000}).eq(6).click();
+        cy.get(organization.organizationSettings).eq(6).click();
         cy.get(organization.vacationMonthsField).clear()
         cy.get(organization.updateButton).eq(1).click();
         cy.get(organization.deleteOrganizationButton).scrollIntoView().click();
@@ -119,7 +119,7 @@ describe("createOrganization", () =>{
         cy.get(organization.yesButton).click();
     })
 
-    it("updateOrganizationTitleMainScreen", ()=>{
+    it("updateOrganizationTitleMainScreen", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
@@ -128,13 +128,13 @@ describe("createOrganization", () =>{
         cy.get(organization.titleField).clear().type(lastName);
         cy.get(organization.checkMark).click();
         cy.get(organization.boardsPopUpOkButton).click({multiple: true});
-        cy.get(organization.organizationSettings, {timeout : 3000}).eq(6).click();
+        cy.get(organization.organizationSettings).eq(6).click();
         cy.get(organization.deleteOrganizationButton).scrollIntoView().click();
         cy.get(organization.passwordField).type(data.user.password);
         cy.get(organization.yesButton).click();
     })
 
-    it("updateOrganizationTitle256", ()=>{
+    it.only("updateOrganizationTitle256", () => {
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);
         cy.get(organization.nextButton).click();
