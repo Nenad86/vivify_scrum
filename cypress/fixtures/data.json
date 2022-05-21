@@ -1,6 +1,10 @@
 {
   "user" : {
     "email": "dzomba1986@yahoo.com",
-    "password" : "Test12345"
+    "password" : "Test12345",
+    "emailWithoutMonkey" : "dzomba1986yahoo.com",
+    "emailWithoutCom" : "dzomba1986@yahoo",
+    "passwordFourCharacters" : "1a2b",
+    "longTitle" : "u7VEWS97OvRyGbdtRlrlnEop6IUjcy7eciJlIT06IjMqcLtGjKnt33FFVDh5klIBkV44qK3bLfHhnxY69TiV3tI8x0iCiqE9ZVOhOWSZYQ328EiuKe9OWfwAMxW6OtdBj3BABCKBkyloyTNyZQy2IhIs12IKHVlZoXQpdhmW88HAG0jnbmYhTDe2khMPvAv9kWHENGOhmvFdxc7D4Sdw120RFC2bOwbhOXSphCwGuOecPt5D0W6egtBGbvQOWLpi"
   }
 }
