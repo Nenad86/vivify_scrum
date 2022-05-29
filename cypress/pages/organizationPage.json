@@ -17,8 +17,12 @@
     "updateButton" : "[type='submit']",
     "vacationDaysField" : "[name='vacationDays']",
     "vacationMonthsField" : "[name='numOfWorkingMonthsForAdditionalDays']",
+    "additionalVacationDaysField": "[name='additionalVacationDays']",
     "workingDaysCheckbox" : ".vs-c-checkbox-check",
     "editButton" : "[title='Edit Organization']",
     "titleField" : ".vs-c-my-organization__header",
-    "checkMark" : "[class='el-icon-check']"
+    "checkMark" : "[class='el-icon-check']",
+    "scrumSign" : "[class='vs-c-site-logo vs-u-cursor--pointer']",
+    "nameValidationMessage" : ".el-form-item__error",
+    "vacationValidationMessage" : "[class='el-form-item__error el-form-item-error--top']"
 }
