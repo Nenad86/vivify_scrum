@@ -17,6 +17,7 @@
     "updateButton" : "[type='submit']",
     "vacationDaysField" : "[name='vacationDays']",
     "vacationMonthsField" : "[name='numOfWorkingMonthsForAdditionalDays']",
+    "additionalVacationDaysField": "[name='additionalVacationDays']",
     "workingDaysCheckbox" : ".vs-c-checkbox-check",
     "editButton" : "[title='Edit Organization']",
     "titleField" : ".vs-c-my-organization__header",

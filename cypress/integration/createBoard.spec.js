@@ -14,7 +14,7 @@ describe("loginUser", () =>{
         cy.visit("");
         cy.get(login.emailInputField).type(data.user.email);
         cy.get(login.passwordInputField).type(data.user.password);
-        cy.get(login.loginButton).click(); 
+        cy.get(login.loginButton).should("have.css", "background-color", "rgb(78, 174, 147)").click(); 
         
         cy.get(login.loginButton).should("not.exist");
     })
@@ -22,12 +22,13 @@ describe("loginUser", () =>{
     afterEach('logOut', () => {
         cy.get(login.profileButton).should("be.visible").click();
         cy.get(login.settingsButton).click();
+        cy.get(login.settingsButton).should("have.css", "background-color", "rgb(254, 87, 35)");
         cy.get(login.logOutButton).click();
 
         cy.get(login.loginButton).should('be.visible').and("contain", "Log In");
     })
 
-    it("cancelCreatingBoard", () => {
+    it("cancel creating board", () => {
         cy.get(organization.organizationList).should("be.visible").click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardField).click();
@@ -41,7 +42,7 @@ describe("loginUser", () =>{
         cy.get(board.addBoardField).should("be.visible").and("have.text", " Add new Board");
     })
 
-    it("createScrumBoardValid", () => {
+    it("create scrum board", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardField).click();
@@ -62,7 +63,7 @@ describe("loginUser", () =>{
         cy.get(board.addBoardField).should("not.contain", name);
     })
 
-    it("createKanbanBoardValid", () => {
+    it("create kanban board", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardField).click();
@@ -83,7 +84,7 @@ describe("loginUser", () =>{
         cy.get(board.addBoardField).should("not.contain", name);
     })
 
-    it("changeBoardType", () => {
+    it("change board type", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardButton).click();
@@ -108,7 +109,7 @@ describe("loginUser", () =>{
         cy.get(board.addBoardField).should("be.visible").and("have.text", " Add new Board");
     })
 
-    it("updateBoardTitle", () => {
+    it("update board title", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardButton).click();
@@ -134,7 +135,7 @@ describe("loginUser", () =>{
         cy.get(board.addBoardField).should("be.visible").and("have.text", " Add new Board");
     })
 
-    it("createBoardByButton", () => {
+    it("create board by button in top corner", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardButton).should("be.visible").click();
@@ -155,7 +156,7 @@ describe("loginUser", () =>{
         cy.get(board.addBoardField).should("be.visible").and("have.text", " Add new Board");
     })
 
-    it("createBoardSidebar", () => {
+    it("create board from sidebar", () => {
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addButtonSidebar).click();
