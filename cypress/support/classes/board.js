@@ -2,7 +2,7 @@ import board from "../elements/boardElements"
 import organization from "../elements/organizationElements"
 
 class Board {
-    createScrumBoard(name){
+    createScrumBoardAndAssertName(name){
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardField).click();
@@ -16,7 +16,7 @@ class Board {
         cy.get(board.boardList).should("be.visible").and("have.text", name);
     }
 
-    createKanbanBoard(name){
+    createKanbanBoardAndAssertName(name){
         cy.get(organization.organizationList).click();
         cy.get(board.xButton).click();
         cy.get(board.addBoardField).click();
@@ -62,7 +62,7 @@ class Board {
         cy.get(board.saveButton).should("be.visible").click();
     }
 
-    updateBoardTitle(lastName){
+    updateBoardTitleAndAssertUpdate(lastName){
         cy.get(board.boardList).click();
         cy.get(board.boardSettingsButton).click();
         cy.get(board.boardUpdateTitleField).clear().type(lastName);

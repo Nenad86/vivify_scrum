@@ -60,7 +60,11 @@ class Organization {
           expect($child[3].innerText).to.eq("The additional days field is required");
         });
 
-        cy.get(organization.vacationValidationMessage).eq(1).scrollIntoView().should("be.visible").and("have.text", "The vacation days field is required");
+        cy.get(organization.vacationValidationMessage)
+            .eq(1)
+            .scrollIntoView()
+            .should("be.visible")
+            .and("have.text", "The vacation days field is required");
     }
 
     updateVactionDaysInvalid(){
@@ -69,7 +73,10 @@ class Organization {
         cy.get(organization.vacationDaysField).clear().type("366");
         cy.get(organization.updateButton).eq(1).click();
 
-        cy.get(organization.vacationValidationMessage).eq(1).scrollIntoView().should("be.visible").and("have.text", "The vacation days field must be between 0 and 365");
+        cy.get(organization.vacationValidationMessage)
+            .eq(1).scrollIntoView()
+            .should("be.visible")
+            .and("have.text", "The vacation days field must be between 0 and 365");
     }
 
     updateOrganizationTitleMainScreen(lastName){
