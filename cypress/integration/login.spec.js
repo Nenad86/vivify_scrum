@@ -11,11 +11,21 @@ describe("loginUser", () =>{
     const invalidPassword = faker.internet.password()
 
     beforeEach("visitUrl", () => {
-        cy.visit("");
+        cy.visit("/login");
     })
 
     after('Log out', () => {
+        cy.intercept({
+            method: 'POST',
+            url: '/api/v2/logout'
+        }).as('logout');
+
         login.logOutFunction();
+
+        cy.wait('@logout').then(({response}) => {
+            expect(response.statusCode).eq(201);
+        })
+
         login.loginButtonValidation();
     })
 
@@ -32,7 +42,18 @@ describe("loginUser", () =>{
     })
 
     it("login with invalid credentials", () => {
-       login.loginFunction(invalidEmail, invalidPassword);     
+        cy.intercept({
+            method: 'POST',
+            url: '/api/v2/login'
+          }).as('login');
+
+       login.loginFunction(invalidEmail, invalidPassword); 
+       
+       cy.wait('@login').then(({ response }) => {
+        expect(response.statusCode).eq(401);
+        expect(response.body.message).eq("Unauthenticated.");
+      });
+
        login.invalidCredentialsMessage();     
     })
 
@@ -62,7 +83,16 @@ describe("loginUser", () =>{
     })
 
     it("valid login", () => {
+        cy.intercept({
+            method: 'GET',
+            url: '/api/v2/my-organizations'
+          }).as('login');
+
         login.loginFunction(data.user.email, data.user.password);
+
+        cy.wait('@login', {timeout: 10000}).then(({ response }) => {
+            expect(response.statusCode).eq(200);
+          });
         login.loginButtonValidation();
     })
 })

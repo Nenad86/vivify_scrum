@@ -1,5 +1,6 @@
 {
   "user" : {
+    "apiUrl" : "https://cypress-api.vivifyscrum-stage.com",
     "email": "dzomba1986@yahoo.com",
     "password" : "Test12345",
     "emailWithoutMonkey" : "dzomba1986yahoo.com",

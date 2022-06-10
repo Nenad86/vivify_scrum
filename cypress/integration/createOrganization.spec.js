@@ -8,12 +8,32 @@ const login = new Login();
 describe("createOrganization", () =>{
 
     beforeEach("visitUrl", () => {
-        cy.visit("");
+        cy.intercept({
+            method: 'GET',
+            url: '/api/v2/my-organizations'
+          }).as('login');
+
+        cy.visit("/");
+
         login.loginFunction(data.user.email, data.user.password);
+
+        cy.wait('@login', {timeout: 10000}).then(({ response }) => {
+            expect(response.statusCode).eq(200);
+          });
     })
     
     afterEach('Log out', () => {
+        cy.intercept({
+            method: 'POST',
+            url: '/api/v2/logout'
+        }).as('logout');
+
         login.logOutFunction();
+
+        cy.wait('@logout').then(({response}) => {
+            expect(response.statusCode).eq(201);
+        })
+
         login.loginButtonValidation();
     })
 
@@ -22,8 +42,19 @@ describe("createOrganization", () =>{
     })
 
     it("create organization", () => {
+        cy.intercept({
+            method: 'POST',
+            url: '/api/v2/organizations'
+          }).as('addOrganization');
+
        organization.createOrganization(data.user.firstName);
-       organization.deleteOrganization(data.user.firstName);
+
+       cy.wait('@addOrganization').then(({ response }) => {
+        expect(response.statusCode).eq(201);
+        expect(response.body.name).eq(data.user.firstName);
+        })
+
+        organization.deleteOrganization(data.user.firstName);
     })
 
     it("update organization title", () => {
