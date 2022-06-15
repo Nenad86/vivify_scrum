@@ -2,43 +2,6 @@ import board from "../elements/boardElements"
 import organization from "../elements/organizationElements"
 
 class Board {
-    createScrumBoardAndAssertName(name){
-        cy.get(organization.organizationList).click();
-        cy.get(board.xButton).click();
-        cy.get(board.addBoardField).click();
-        cy.get(board.addBoardTitle).type(name);
-        cy.get(board.nextButton).click();
-        cy.get(board.scrumBoardButton).click();
-        cy.get(board.nextButton).click();
-        cy.get(board.nextButton).click();
-        cy.get(board.nextButton).click();
-
-        cy.get(board.boardList).should("be.visible").and("have.text", name);
-    }
-
-    createKanbanBoardAndAssertName(name){
-        cy.get(organization.organizationList).click();
-        cy.get(board.xButton).click();
-        cy.get(board.addBoardField).click();
-        cy.get(board.addBoardTitle).type(name);
-        cy.get(board.nextButton).click();
-        cy.get(board.kanbanBoardButton).eq(1).click();
-        cy.get(board.nextButton).click();
-        cy.get(board.nextButton).click();
-        cy.get(board.nextButton).click({force:true});
-
-        cy.get(board.boardList).should("be.visible").and("have.text", name);
-    }
-
-    deleteBoard(name){
-        cy.get(board.boardList).click();
-        cy.get(board.boardSettingsButton).click({force: true});
-        cy.get(board.deleteBoardButton).scrollIntoView().click();
-        cy.get(board.saveButton).click();
-
-        cy.get(board.addBoardField).should("not.contain", name);
-    }
-
     cancelCreatingBoard(name){
         cy.get(organization.organizationList).should("be.visible").click();
         cy.get(board.xButton).click();

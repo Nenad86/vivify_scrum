@@ -20,7 +20,7 @@ describe("loginUser", () =>{
             url: '/api/v2/logout'
         }).as('logout');
 
-        login.logOutFunction();
+        cy.logOutViaUI();
 
         cy.wait('@logout').then(({response}) => {
             expect(response.statusCode).eq(201);
@@ -88,7 +88,7 @@ describe("loginUser", () =>{
             url: '/api/v2/my-organizations'
           }).as('login');
 
-        login.loginFunction(data.user.email, data.user.password);
+        cy.loginViaUI();
 
         cy.wait('@login', {timeout: 10000}).then(({ response }) => {
             expect(response.statusCode).eq(200);
