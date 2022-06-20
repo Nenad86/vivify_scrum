@@ -2,26 +2,6 @@ import organization from "../elements/organizationElements"
 import data from "../../fixtures/data.json"
 
 class Organization {
-    createOrganization(name){
-        cy.get(organization.addOrganizationField).click();
-        cy.get(organization.organizationNameField).type(name);
-        cy.get(organization.nextButton).click();
-        cy.get(organization.nextButton).click();
-        cy.get(organization.boardsPopUpOkButton).click({force: true});
-        cy.get(organization.scrumSign).should("be.visible").click();
-
-        cy.get(organization.titleField).should("be.visible").and("contain", name);
-    }
-
-    deleteOrganization(name){
-        cy.get(organization.organizationList).eq(1).click();
-        cy.get(organization.organizationSettings).click();
-        cy.get(organization.deleteOrganizationButton).scrollIntoView().click({force: true});
-        cy.get(organization.passwordField).type(data.user.password);
-        cy.get(organization.yesButton).click();
-        cy.get(organization.titleField).should("be.visible").and("not.contain", name);
-    }
-
     cancelCreatingOrganization(name){
         cy.get(organization.addOrganizationField).click();
         cy.get(organization.organizationNameField).type(name);

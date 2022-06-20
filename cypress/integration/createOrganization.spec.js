@@ -15,7 +15,7 @@ describe("createOrganization", () =>{
 
         cy.visit("/");
 
-        login.loginFunction(data.user.email, data.user.password);
+        cy.loginViaUI();
 
         cy.wait('@login', {timeout: 10000}).then(({ response }) => {
             expect(response.statusCode).eq(200);
@@ -28,7 +28,7 @@ describe("createOrganization", () =>{
             url: '/api/v2/logout'
         }).as('logout');
 
-        login.logOutFunction();
+        cy.logOutViaUI();
 
         cy.wait('@logout').then(({response}) => {
             expect(response.statusCode).eq(201);
@@ -47,55 +47,55 @@ describe("createOrganization", () =>{
             url: '/api/v2/organizations'
           }).as('addOrganization');
 
-       organization.createOrganization(data.user.firstName);
+       cy.createOrganizationViaUI(data.user.firstName);
 
        cy.wait('@addOrganization').then(({ response }) => {
         expect(response.statusCode).eq(201);
         expect(response.body.name).eq(data.user.firstName);
         })
 
-        organization.deleteOrganization(data.user.firstName);
+        cy.deleteOrganizationViaUI(data.user.firstName);
     })
 
     it("update organization title", () => {
-        organization.createOrganization(data.user.firstName);
+        cy.createOrganizationViaUI(data.user.firstName);
         organization.updatingOrganizationTitle(data.user.lastName);
-        organization.deleteOrganization(data.user.lastName);
+        cy.deleteOrganizationViaUI(data.user.lastName);
     })
 
     it("update organization working days", () => {
-        organization.createOrganization(data.user.firstName);
+        cy.createOrganizationViaUI(data.user.firstName);
         organization.updateOrganizationWorkingDays();
-        organization.deleteOrganization(data.user.firstName);
+        cy.deleteOrganizationViaUI(data.user.firstName);
     })
 
     it("update organization vacation days and months, leave empty fields", () => {
-        organization.createOrganization(data.user.firstName);
+        cy.createOrganizationViaUI(data.user.firstName);
         organization.updateOrganizationVacation();
-        organization.deleteOrganization(data.user.firstName);
+        cy.deleteOrganizationViaUI(data.user.firstName);
     })
 
     it("update organization vacation days, enter 366 days", () => {
-        organization.createOrganization(data.user.firstName);
+        cy.createOrganizationViaUI(data.user.firstName);
         organization.updateVactionDaysInvalid();
-        organization.deleteOrganization(data.user.firstName);
+        cy.deleteOrganizationViaUI(data.user.firstName);
     })
 
     it("update organization title on main screen", () => {
-        organization.createOrganization(data.user.firstName);
+        cy.createOrganizationViaUI(data.user.firstName);
         organization.updateOrganizationTitleMainScreen(data.user.lastName)
-        organization.deleteOrganization(data.user.lastName);
+        cy.deleteOrganizationViaUI(data.user.lastName);
     })
 
     it("update organization title, length of 50 characters", () => {
-        organization.createOrganization(data.user.firstName);
+        cy.createOrganizationViaUI(data.user.firstName);
         organization.updatingOrganizationTitle(data.user.longTitle)
-        organization.deleteOrganization(data.user.firstName);
+        cy.deleteOrganizationViaUI(data.user.firstName);
     }) 
     
     it("update organization title with only spaces", () => {
-        organization.createOrganization(data.user.firstName);
+        cy.createOrganizationViaUI(data.user.firstName);
         organization.updatingOrganizationTitle(data.user.onlySpaces);
-        organization.deleteOrganization(data.user.firstName);
+        cy.deleteOrganizationViaUI(data.user.firstName);
     })
 })

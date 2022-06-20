@@ -16,7 +16,8 @@ describe("loginUser", () =>{
           }).as('login');
 
         cy.visit("/login");
-        login.loginFunction(data.user.email, data.user.password);
+
+        cy.loginViaUI();
 
         cy.wait('@login', {timeout: 10000}).then(({ response }) => {
             expect(response.statusCode).eq(200);
@@ -29,7 +30,7 @@ describe("loginUser", () =>{
             url: '/api/v2/logout'
         }).as('logout');
 
-        login.logOutFunction();
+        cy.logOutViaUI();
 
         cy.wait('@logout').then(({response}) => {
             expect(response.statusCode).eq(201);
@@ -48,13 +49,13 @@ describe("loginUser", () =>{
             url: '/api/v2/boards'
           }).as('addBoard');
 
-        board.createScrumBoardAndAssertName(data.user.firstName);
+        cy.createScrumBoardAndAssertNameUI(data.user.firstName);
 
         cy.wait('@addBoard').then(({ response }) => {
             expect(response.statusCode).eq(201);
             expect(response.body.name).eq(data.user.firstName);
 
-        board.deleteBoard(data.user.firstName);
+        cy.deleteBoardUI(data.user.firstName);
         })
     })
 
@@ -64,36 +65,36 @@ describe("loginUser", () =>{
             url: '/api/v2/boards'
           }).as('addBoard');
 
-        board.createKanbanBoardAndAssertName(data.user.firstName);
+        cy.createKanbanBoardAndAssertNameUI(data.user.firstName);
 
         cy.wait('@addBoard').then(({ response }) => {
             expect(response.statusCode).eq(201);
             expect(response.body.name).eq(data.user.firstName);
         })
 
-        board.deleteBoard(data.user.firstName);
+        cy.deleteBoardUI(data.user.firstName);
     })
 
     it("change board type", () => {
-        board.createKanbanBoardAndAssertName(data.user.firstName);
+        cy.createKanbanBoardAndAssertNameUI(data.user.firstName);
         board.changeBoardType();
-        board.deleteBoard(data.user.firstName);
+        cy.deleteBoardUI(data.user.firstName);
     })
 
     it("update board title", () => {
-        board.createKanbanBoardAndAssertName(data.user.firstName);
+        cy.createKanbanBoardAndAssertNameUI(data.user.firstName);
         board.updateBoardTitle(data.user.lastName);
-        board.deleteBoard(data.user.lastName);
+        cy.deleteBoardUI(data.user.lastName);
     })
 
     it("create board by button in top corner", () => {
         board.createBoardByTopButton(data.user.firstName);
-        board.deleteBoard(data.user.firstName);
+        cy.deleteBoardUI(data.user.firstName);
     })
 
     it("create board from sidebar", () => {
         board.createBoardSidebar(data.user.firstName);
-        board.deleteBoard(data.user.firstName);
+        cy.deleteBoardUI(data.user.firstName);
     })
 })
 
