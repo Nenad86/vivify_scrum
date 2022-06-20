@@ -41,7 +41,7 @@ describe("createOrganization", () =>{
         organization.cancelCreatingOrganization(data.user.firstName);
     })
 
-    it.only("create organization", () => {
+    it("create organization", () => {
         cy.intercept({
             method: 'POST',
             url: '/api/v2/organizations'
