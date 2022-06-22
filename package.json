@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/cypress open"
+    "test": "./node_modules/.bin/cypress open",
+    "qa": "./node_modules/.bin/cypress open --env configFile=qa_env",
+    "stage": "./node_modules/.bin/cypress open --env configFile=stage_env",
+    "production": "./node_modules/.bin/cypress open --env configFile=production_env"
   },
   "author": "",
   "license": "ISC",
