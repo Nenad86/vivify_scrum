@@ -1,0 +1,8 @@
+{
+    "baseUrl": "https://vivifyscrum.com",
+    "env": {
+      "publicUrl": "https://vivifyscrum.com",
+      "adminUrl": "https://vivifyscrum.com/admin",
+      "apiUrl": "https://vivifyscrum.com/api"
+    }
+}
